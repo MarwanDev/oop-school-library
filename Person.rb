@@ -1,8 +1,8 @@
 class Person
-  attr_reader :id
   attr_accessor :name, age
+  attr_reader :id
 
-  def initialize (name = 'unkown', age, parent_permission = true)
+  def initialize(age, name = 'Unkown', parent_permission: true)
     @id = SecureRandom.uuid
     @name = name
     @age = age
@@ -14,6 +14,7 @@ class Person
   end
 
   private
+
   def of_age?
     age >= 18
   end
