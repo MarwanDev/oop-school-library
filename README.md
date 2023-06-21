@@ -90,6 +90,8 @@ gem install
 
 ## 🔭 Future Features <a name="future-features"></a>
 
+- [More Independent Classes]
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
