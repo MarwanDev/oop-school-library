@@ -26,7 +26,7 @@ class App
     when 1
       puts 'Has parent permission? [Y/N]'
       parent_permission = gets.chomp.downcase == 'y'
-      student = Student.new(age, name, parent_permission)
+      student = Student.new(age, parent_permission, name)
       @persons.push(student)
     when 2
       puts 'Specialization'
@@ -58,11 +58,11 @@ class App
       puts "#{index}) Name: #{person.name}, ID: #{person.id}, Age: #{person.age}"
     end
     person_index = gets.chomp.to_i
-    puts "Date"
+    puts 'Date'
     date = gets.chomp
     rental = Rental.new(date, @books[book_index], @persons[person_index])
     @rentals.push(rental)
-    puts "Rental added sucessfully"
+    puts 'Rental added sucessfully'
   end
 
   def list_all_people
@@ -76,15 +76,15 @@ class App
   end
 
   def list_rentals
-    puts "ID of person"
+    puts 'ID of person'
     person_id = gets.chomp
-    puts "Rentals"
+    puts 'Rentals'
     @rentals.each do |rental|
       if rental.person.id == person_id
         puts "Date: #{rental.date}, Book: '#{rental.book.title}' by #{rental.book.author}"
       end
     end
-  end  
+  end
 
   def list_all_books
     @books.each do |book|
@@ -92,4 +92,3 @@ class App
     end
   end
 end
-

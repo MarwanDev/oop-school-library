@@ -1,7 +1,7 @@
 require_relative 'app'
 
 def display_menu
-  puts 'Please choose an option by entering a number:'
+  puts "\n" + 'Please choose an option by entering a number:'
   puts '1 - List all books'
   puts '2 - List all people'
   puts '3 - Add a person'
@@ -26,16 +26,17 @@ def choose_option(option, app)
   when 6
     app.list_rentals
   else
-    puts "Try again by choosing option 1-7"
+    puts 'Try again by choosing option 1-7'
   end
 end
 
 def main
-  app = App.new()
-  loop do 
+  app = App.new
+  loop do
     display_menu
     option = gets.chomp.to_i
     break if option == 7
+
     choose_option(option, app)
   end
 end
