@@ -4,6 +4,7 @@ require_relative 'student'
 require_relative 'rental'
 require_relative 'classroom'
 require_relative 'teacher'
+require_relative 'input'
 
 class App
   attr_accessor :books, :persons, :classroom, :rentals
@@ -16,21 +17,20 @@ class App
 
   def add_person()
     puts 'Do you want to add a student (1) or a teacher (2)? [Input the number]'
-    is_student = gets.chomp.to_i
+    is_student = Input.new.input_int
     puts 'Age'
-    age = gets.chomp.to_i
+    age = Input.new.input_int
     puts 'Name'
-    name = gets.chomp
-
+    name = Input.new.input
     case is_student
     when 1
       puts 'Has parent permission? [Y/N]'
-      parent_permission = gets.chomp.downcase == 'y'
+      parent_permission = Input.new.parent_permission
       student = Student.new(age, parent_permission, name)
       @persons.push(student)
     when 2
       puts 'Specialization'
-      specialization = gets.chomp
+      specialization = Input.new.input
       teacher = Teacher.new(age, specialization, name)
       @persons.push(teacher)
     end
@@ -39,9 +39,9 @@ class App
 
   def add_book
     puts 'Title'
-    title = gets.chomp
+    title = Input.new.input
     puts 'Author'
-    author = gets.chomp
+    author = Input.new.input
     book = Book.new(title, author)
     @books.push(book)
     puts 'Book added successfully.'
@@ -52,14 +52,14 @@ class App
     @books.each_with_index do |book, index|
       puts "#{index}) Title: #{book.title}, Author: #{book.author}"
     end
-    book_index = gets.chomp.to_i
+    book_index = Input.new.input_int
     puts 'Select a person from the following list by number (not Id)'
     @persons.each_with_index do |person, index|
       puts "#{index}) Name: #{person.name}, ID: #{person.id}, Age: #{person.age}"
     end
-    person_index = gets.chomp.to_i
+    person_index = Input.new.input_int
     puts 'Date'
-    date = gets.chomp
+    date = Input.new.input
     rental = Rental.new(date, @books[book_index], @persons[person_index])
     @rentals.push(rental)
     puts 'Rental added sucessfully'
@@ -77,7 +77,7 @@ class App
 
   def list_rentals
     puts 'ID of person'
-    person_id = gets.chomp
+    person_id = Input.new.input
     puts 'Rentals'
     @rentals.each do |rental|
       if rental.person.id == person_id
