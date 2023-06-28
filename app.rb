@@ -31,6 +31,7 @@ class App
       parent_permission = Input.new.parent_permission
       type = 'Student'
       student = Student.new(type, parent_permission, name, age)
+      @persons = []
       @persons.push(student)
     when 2
       puts 'Specialization'
@@ -49,6 +50,7 @@ class App
     puts 'Author'
     author = Input.new.input
     book = Book.new(title, author)
+    @books = []
     @books.push(book)
     write('Data Files/books.json', @books)
     puts 'Book added successfully.'
@@ -70,6 +72,7 @@ class App
     puts 'Date'
     date = Input.new.input
     rental = Rental.new(date, @books[book_index], @persons[person_index])
+    @rentals = []
     @rentals.push(rental)
     write('Data Files/rentals.json', @rentals)
     puts 'Rental added sucessfully'
