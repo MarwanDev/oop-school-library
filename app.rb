@@ -7,14 +7,16 @@ require_relative 'teacher'
 require_relative 'input'
 require_relative 'file_manager'
 require 'json'
-# require 'pry'
+
 class App
   attr_accessor :books, :persons, :classroom, :rentals
+
   def initialize
     @books = []
     @persons = []
     @rentals = []
   end
+
   def add_person()
     puts 'Do you want to add a student (1) or a teacher (2)? [Input the number]'
     is_student = Input.new.input_int
@@ -38,8 +40,8 @@ class App
       @persons.push(teacher)
     end
     write('Data Files/people.json', @persons)
-    puts 'Person added successfully.'
   end
+
   def add_book
     puts 'Title'
     title = Input.new.input
@@ -51,6 +53,7 @@ class App
     write('Data Files/books.json', @books)
     puts 'Book added successfully.'
   end
+
   def add_rental
     puts 'Select a book from the following list by number'
     @books = read('Data Files/books.json')
@@ -72,12 +75,14 @@ class App
     write('Data Files/rentals.json', @rentals)
     puts 'Rental added sucessfully'
   end
+
   def list_all_people
     @persons = read('Data Files/people.json')
     @persons.each do |person|
-        puts "[#{person['type']}], ID: #{person['id']}, Name: #{person['name']}, age: #{person['age']}"
+      puts "[#{person['type']}], ID: #{person['id']}, Name: #{person['name']}, age: #{person['age']}"
     end
   end
+
   def list_rentals
     puts 'ID of person'
     person_id = Input.new.input
@@ -89,6 +94,7 @@ class App
       end
     end
   end
+
   def list_all_books
     @books = read('Data Files/books.json')
     @books.each do |book|
@@ -96,10 +102,3 @@ class App
     end
   end
 end
-
-
-
-
-
-
-
