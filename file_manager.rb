@@ -3,7 +3,6 @@ require_relative 'book'
 require_relative 'person'
 require_relative 'rental'
 
-
 def write(file_name, obj)
   content = obj
   File.write(file_name, JSON.generate(content, { max_nesting: false }))

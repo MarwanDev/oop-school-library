@@ -11,7 +11,6 @@ require 'json'
 class App
   attr_accessor :books, :persons, :classroom, :rentals
 
-
   include ReadData
   def initialize
     @books = read_books
