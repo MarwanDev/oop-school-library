@@ -8,13 +8,23 @@ class Person < Nameable
   attr_accessor :name, :age, :rentals
   attr_reader :id
 
-  def initialize(age, name = 'Unkown', parent_permission: true)
+  def initialize(type, age, name = 'Unkown', parent_permission: true)
     super()
     @id = SecureRandom.uuid
     @name = name
     @age = age
+    @type = type
     @parent_permission = parent_permission
     @rentals = []
+  end
+
+  def args
+    {
+      id: @id,
+      name: @name,
+      age: @age,
+      type: @type
+    }
   end
 
   def can_use_services?

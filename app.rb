@@ -5,6 +5,8 @@ require_relative 'rental'
 require_relative 'classroom'
 require_relative 'teacher'
 require_relative 'input'
+require_relative 'file_manager'
+require 'json'
 
 class App
   attr_accessor :books, :persons, :classroom, :rentals
@@ -26,13 +28,17 @@ class App
     when 1
       puts 'Has parent permission? [Y/N]'
       parent_permission = Input.new.parent_permission
-      student = Student.new(age, parent_permission, name)
+      type = "Student"
+      student = Student.new(type, parent_permission, age, name)
       @persons.push(student)
+      write('people.json', @persons)
     when 2
       puts 'Specialization'
       specialization = Input.new.input
-      teacher = Teacher.new(age, specialization, name)
+      type = "Teacher"
+      teacher = Teacher.new(type, specialization , age, name)
       @persons.push(teacher)
+      write('people.json', @persons)
     end
     puts 'Person added successfully.'
   end
