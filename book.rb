@@ -11,10 +11,10 @@ class Book
     Rental.new(date, self, person)
   end
 
-  def args
+  def to_json(*args)
     {
       title: @title,
       author: @author
-    }
+    }.to_json(*args)
   end
 end

@@ -18,13 +18,13 @@ class Person < Nameable
     @rentals = []
   end
 
-  def args
+  def to_json(*args)
     {
       id: @id,
       name: @name,
       age: @age,
       type: @type
-    }
+    }.to_json(*args)
   end
 
   def can_use_services?

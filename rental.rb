@@ -7,11 +7,11 @@ class Rental
     @person = person
   end
 
-  def args
+  def to_json(*args)
     {
       date: @date,
       book: @book,
       person: @person
-    }
+    }.to_json(*args)
   end
 end
