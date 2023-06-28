@@ -7,6 +7,7 @@ require_relative 'teacher'
 require_relative 'input'
 require_relative 'file_manager'
 require 'json'
+require 'pry'
 
 class App
   attr_accessor :books, :persons, :classroom, :rentals
@@ -97,8 +98,9 @@ class App
   end
 
   def list_all_books
+    @books = read('Data Files/books.json')
     @books.each do |book|
-      puts "Title: '#{book.title}', Author: #{book.author}"
+      puts "Title: '#{book['title']}', Author: #{book['author']}"
     end
   end
 end
